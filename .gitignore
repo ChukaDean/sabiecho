@@ -1,0 +1,12 @@
+node_modules
+dist
+dev-dist
+public/ort
+.DS_Store
+*.log
+keys/
+tsconfig.tsbuildinfo
+.vercel
+.env*
+/*.m4a
+/*.pdf

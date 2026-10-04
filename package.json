@@ -1,0 +1,40 @@
+{
+  "name": "sabiecho",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/copy-ort.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/copy-ort.mjs",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc",
+    "eval": "tsx scripts/eval-classifier.ts",
+    "train": "tsx scripts/train-head.ts",
+    "import-improvements": "tsx scripts/import-improvements.ts",
+    "issue-volunteer": "tsx scripts/issue-volunteer.ts",
+    "benchmark": "tsx scripts/benchmark.ts",
+    "try": "tsx scripts/try-classifier.ts",
+    "test:language": "tsx scripts/test-language.ts",
+    "test:insights": "tsx scripts/test-insights.ts"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@huggingface/transformers": "^4.3.0",
+    "idb": "^8.0.3",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.2",
+    "vite-plugin-pwa": "^2.0.0"
+  }
+}

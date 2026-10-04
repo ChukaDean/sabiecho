@@ -1,0 +1,31 @@
+{
+  "fon": {
+    "1": { "text": "Xomɛ hun jonɔ ɔ", "audio": "audio/fon/01.m4a" },
+    "2": { "text": "Jonɔ ɔ ɖó linlin vovo", "audio": "audio/fon/02.m4a" },
+    "3": { "text": "Xomɛ hun jonɔ ɔ ǎ", "audio": "audio/fon/03.m4a" },
+    "4": { "text": "Tinmɛ towe lɛ nyɔ́ nukún yetɔn mɛ", "audio": "audio/fon/04.m4a" },
+    "5": { "text": "Ye ba tinmɛ ɖevo lɛ", "audio": "audio/fon/05.m4a" },
+    "6": { "text": "Ye mɔ ɖɔ è yí emi ganji", "audio": "audio/fon/06.m4a" },
+    "7": { "text": "Ye mɔ ɖɔ è yí emi ganji ǎ", "audio": "audio/fon/07.m4a" },
+    "8": { "text": "Ye mɔ nukúnnú jɛ nǔ mɛ ganji", "audio": "audio/fon/08.m4a" },
+    "9": { "text": "É vɛwǔ nú ye bɔ ye na mɔ nukúnnú jɛ nǔ mɛ nú we", "audio": "audio/fon/09.m4a" },
+    "10": { "text": "É víví nú ye bɔ ye wà nǔ lɛ kpo alɔ yetɔn kpo", "audio": "audio/fon/10.m4a" },
+    "11": { "text": "É jló na ɖ’alɔ ɖò nǔwiwa enɛ lɛ mɛ hugǎn", "audio": "audio/fon/11.m4a" },
+    "12": { "text": "Ye yí wǎn nú fí ɔ kpo nǔ e ɖò finɛ lɛ é kpo", "audio": "audio/fon/12.m4a" },
+    "13": { "text": "Fí ɔ jiwǔ nú ye ǎ", "audio": "audio/fon/13.m4a" },
+    "14": { "text": "Ye ɖu nǔ e ye ɖu bo nu lɛ é sín vivǐ", "audio": "audio/fon/14.m4a" },
+    "15": { "text": "Ye ba nǔɖuɖu kpo ahan kpo gègě", "audio": "audio/fon/15.m4a" },
+    "16": { "text": "É víví nú ye bɔ ye xɔ nǔ e ye na hɛn yì é", "audio": "audio/fon/16.m4a" },
+    "17": { "text": "Ye jló na ɖó nǔ e ye na xɔ é", "audio": "audio/fon/17.m4a" },
+    "18": { "text": "Ye mɔ ɖɔ emi vo bo lɛ́ ɖò ayijayǐ mɛ", "audio": "audio/fon/18.m4a" },
+    "19": { "text": "Ye ɖó tagba ɖé ɖò gbɔdónúmɛ kpo ayijayǐ kpo linu", "audio": "audio/fon/19.m4a" },
+    "20": { "text": "Ye yí wǎn nú tuto ɔ", "audio": "audio/fon/20.m4a" },
+    "21": { "text": "Ye ɖó tagba ɖé dó tuto ɔ kpo hwenu e é na xɔ é kpo wu", "audio": "audio/fon/21.m4a" },
+    "22": { "text": "Ye mɔ akwɛ e jɛxa é", "audio": "audio/fon/22.m4a" },
+    "23": { "text": "Ye mɔ ɖɔ akwɛ e è sú é xɔ akwɛ dín", "audio": "audio/fon/23.m4a" },
+    "24": { "text": "Ye mɔ tɛn ɔ bɔ é vɛwǔ nú ye ǎ", "audio": "audio/fon/24.m4a" },
+    "25": { "text": "É vɛwǔ nú ye bɔ ye na mɔ tɛn ɔ", "audio": "audio/fon/25.m4a" },
+    "26": { "text": "Ye ɖɔ ɖɔ emi na lɛkɔ wá alǒ ɖɔ xó dó nǔ enɛ jí xá mɛ ɖevo lɛ", "audio": "audio/fon/26.m4a" },
+    "27": { "text": "Un ɖè ji ǎ. È hɛn xó yetɔn nú mɛ ɖé na xà" }
+  }
+}

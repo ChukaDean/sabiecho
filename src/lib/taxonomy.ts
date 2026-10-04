@@ -1,0 +1,476 @@
+export type MeaningId =
+  | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14
+  | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27;
+
+export type MeaningGroup =
+  | 'overall'
+  | 'explanations'
+  | 'welcome'
+  | 'understanding'
+  | 'participation'
+  | 'place'
+  | 'food'
+  | 'shopping'
+  | 'comfort'
+  | 'organisation'
+  | 'price'
+  | 'access'
+  | 'loyalty'
+  | 'fallback';
+
+export interface Meaning {
+  id: MeaningId;
+  group: MeaningGroup;
+  fr: string;
+  en: string;
+  /** Example phrasings used to train the classifier. */
+  examples: string[];
+}
+
+export const FALLBACK_ID: MeaningId = 27;
+
+export const MEANINGS: Meaning[] = [
+  {
+    id: 1,
+    group: 'overall',
+    fr: 'Le visiteur était content.',
+    en: 'The visitor was happy.',
+    examples: [
+      'We had a great time.',
+      'It was a wonderful experience, we loved it.',
+      'Amazing visit, highly enjoyable.',
+      'I was very happy with the whole day.',
+      'Excellent, everything was perfect.',
+      'Nous avons passé un super moment.',
+      "C'était une expérience merveilleuse, on a adoré.",
+      'Visite géniale, très agréable.',
+      "J'étais très content de toute la journée.",
+      'Excellent, tout était parfait.',
+    ],
+  },
+  {
+    id: 2,
+    group: 'overall',
+    fr: 'Le visiteur avait un avis partagé.',
+    en: 'The visitor had mixed feelings.',
+    examples: [
+      'It was okay, some good parts and some bad parts.',
+      'Mixed feelings about the visit.',
+      'Not bad, but not great either.',
+      'It was average, nothing special.',
+      'Some things were nice, others were disappointing.',
+      "C'était correct, il y avait du bon et du moins bon.",
+      "J'ai un avis mitigé sur la visite.",
+      'Pas mal, mais pas génial non plus.',
+      "C'était moyen, rien de spécial.",
+      'Certaines choses étaient bien, d’autres décevantes.',
+      'Une expérience mitigée.',
+      'Il y avait du bon et du moins bon.',
+    ],
+  },
+  {
+    id: 3,
+    group: 'overall',
+    fr: "Le visiteur n'était pas content.",
+    en: 'The visitor was not happy.',
+    examples: [
+      'We were very disappointed.',
+      'It was a bad experience.',
+      'I did not enjoy the visit at all.',
+      'Terrible, a waste of time.',
+      'I was unhappy with the whole day.',
+      'Very disappointing, I would not do it again.',
+      'I would not recommend it.',
+      'Nous avons été très déçus.',
+      "C'était une mauvaise expérience.",
+      "Je n'ai pas du tout aimé la visite.",
+      'Horrible, une perte de temps.',
+      "Je n'étais pas content de la journée.",
+      'Très décevant, je ne le referais pas.',
+      'Je ne le recommande pas.',
+    ],
+  },
+  {
+    id: 4,
+    group: 'explanations',
+    fr: 'Ils ont aimé vos explications.',
+    en: 'They liked your explanations.',
+    examples: [
+      'The host explained everything clearly.',
+      'The guide gave great explanations.',
+      'We learned a lot from the explanations.',
+      'Very informative and well explained.',
+      "L'hôte a tout expliqué clairement.",
+      'Le guide a donné de très bonnes explications.',
+      'Nous avons beaucoup appris grâce aux explications.',
+      'Très instructif et bien expliqué.',
+    ],
+  },
+  {
+    id: 5,
+    group: 'explanations',
+    fr: "Ils voulaient plus d'explications.",
+    en: 'They wanted more explanations.',
+    examples: [
+      'We would have liked more explanations.',
+      'The guide did not explain much.',
+      'I wanted to learn more about the history.',
+      'There was not enough information.',
+      "Nous aurions aimé plus d'explications.",
+      "Le guide n'a pas beaucoup expliqué.",
+      "J'aurais voulu en apprendre davantage sur l'histoire.",
+      "Il n'y avait pas assez d'informations.",
+    ],
+  },
+  {
+    id: 6,
+    group: 'welcome',
+    fr: 'Ils se sont sentis bien accueillis.',
+    en: 'They felt well welcomed.',
+    examples: [
+      'We were warmly welcomed.',
+      'The host was very friendly and welcoming.',
+      'Great hospitality, we felt at home.',
+      'Everyone was kind and hospitable.',
+      'Nous avons été chaleureusement accueillis.',
+      "L'hôte était très gentil et accueillant.",
+      "Une belle hospitalité, on s'est sentis comme chez nous.",
+      'Tout le monde était aimable et accueillant.',
+    ],
+  },
+  {
+    id: 7,
+    group: 'welcome',
+    fr: 'Ils ne se sont pas sentis bien accueillis.',
+    en: 'They did not feel well welcomed.',
+    examples: [
+      'The welcome was cold.',
+      'The staff were unfriendly.',
+      'We did not feel welcome.',
+      'Nobody greeted us when we arrived.',
+      "L'accueil était froid.",
+      "Le personnel n'était pas aimable.",
+      'Nous ne nous sommes pas sentis les bienvenus.',
+      "Personne ne nous a accueillis à l'arrivée.",
+    ],
+  },
+  {
+    id: 8,
+    group: 'understanding',
+    fr: 'Ils vous ont bien comprise.',
+    en: 'They understood you well.',
+    examples: [
+      'The host was easy to understand.',
+      'Communication was easy.',
+      'We understood the guide well.',
+      'She spoke clearly and we understood everything.',
+      "L'hôte était facile à comprendre.",
+      'La communication était facile.',
+      'Nous avons bien compris la guide.',
+      'Elle parlait clairement et nous avons tout compris.',
+    ],
+  },
+  {
+    id: 9,
+    group: 'understanding',
+    fr: 'Ils ont eu du mal à vous comprendre.',
+    en: 'They had difficulty understanding you.',
+    examples: [
+      'It was hard to understand the host.',
+      'There was a language barrier.',
+      'We could not understand the guide.',
+      'Communication was difficult.',
+      "C'était difficile de comprendre l'hôte.",
+      'Il y avait une barrière de la langue.',
+      'Nous ne comprenions pas la guide.',
+      'La communication était difficile.',
+    ],
+  },
+  {
+    id: 10,
+    group: 'participation',
+    fr: 'Ils ont aimé faire les choses de leurs propres mains.',
+    en: 'They enjoyed doing things with their own hands.',
+    examples: [
+      'We loved the hands-on activities.',
+      'Making it ourselves was the best part.',
+      'I enjoyed taking part in the cooking.',
+      'Great workshop, we got to try it ourselves.',
+      'Nous avons adoré les activités pratiques.',
+      'Le faire nous-mêmes était le meilleur moment.',
+      "J'ai aimé participer à la cuisine.",
+      'Super atelier, on a pu essayer nous-mêmes.',
+    ],
+  },
+  {
+    id: 11,
+    group: 'participation',
+    fr: 'Ils voulaient participer davantage.',
+    en: 'They wanted to participate more.',
+    examples: [
+      'We wanted to take part more.',
+      'We only watched, we could not try anything.',
+      'I would have liked more hands-on activities.',
+      'There was not enough participation.',
+      'Nous voulions participer davantage.',
+      "Nous avons seulement regardé, nous n'avons rien pu essayer.",
+      "J'aurais aimé plus d'activités pratiques.",
+      "Il n'y avait pas assez de participation.",
+    ],
+  },
+  {
+    id: 12,
+    group: 'place',
+    fr: "Ils ont aimé l'endroit et le paysage.",
+    en: 'They liked the place and the scenery.',
+    examples: [
+      'The place is beautiful.',
+      'Stunning scenery and landscape.',
+      'We loved the setting and the views.',
+      'A lovely, peaceful location.',
+      "L'endroit est magnifique.",
+      'Des paysages superbes.',
+      "Nous avons adoré le cadre et la vue.",
+      'Un lieu charmant et paisible.',
+    ],
+  },
+  {
+    id: 13,
+    group: 'place',
+    fr: "L'endroit ne les a pas impressionnés.",
+    en: 'The place did not impress them.',
+    examples: [
+      'The place was not impressive.',
+      'The site was disappointing.',
+      'Nothing much to see there.',
+      'The location was dirty and run down.',
+      "L'endroit n'était pas impressionnant.",
+      'Le site était décevant.',
+      "Il n'y avait pas grand-chose à voir.",
+      "Le lieu était sale et mal entretenu.",
+    ],
+  },
+  {
+    id: 14,
+    group: 'food',
+    fr: "Ils ont aimé ce qu'ils ont mangé et bu.",
+    en: 'They liked what they ate and drank.',
+    examples: [
+      'The food was excellent.',
+      'Delicious meal and drinks.',
+      'We loved the local dishes.',
+      'The juice was very tasty.',
+      'La nourriture était excellente.',
+      'Repas et boissons délicieux.',
+      'Nous avons adoré les plats locaux.',
+      'Le jus était très bon.',
+    ],
+  },
+  {
+    id: 15,
+    group: 'food',
+    fr: 'Ils voulaient plus à manger ou à boire.',
+    en: 'They wanted more to eat or drink.',
+    examples: [
+      'There was not enough food.',
+      'We were still hungry.',
+      'We would have liked something to drink.',
+      'The portions were too small.',
+      "Il n'y avait pas assez à manger.",
+      'Nous avions encore faim.',
+      "Nous aurions aimé avoir quelque chose à boire.",
+      'Les portions étaient trop petites.',
+    ],
+  },
+  {
+    id: 16,
+    group: 'shopping',
+    fr: "Ils étaient contents d'acheter quelque chose à emporter.",
+    en: 'They were happy to buy something to take away.',
+    examples: [
+      'We bought some lovely souvenirs.',
+      'Happy to take home some local products.',
+      'I bought honey to bring back.',
+      'Great crafts for sale.',
+      'Nous avons acheté de jolis souvenirs.',
+      'Contents de rapporter des produits locaux.',
+      "J'ai acheté du miel à ramener.",
+      'De beaux objets artisanaux à vendre.',
+    ],
+  },
+  {
+    id: 17,
+    group: 'shopping',
+    fr: 'Ils voulaient avoir quelque chose à acheter.',
+    en: 'They wanted something available to buy.',
+    examples: [
+      'There was nothing to buy.',
+      'We wanted to buy souvenirs but there were none.',
+      'It would be nice to sell some products.',
+      'No shop or crafts for sale.',
+      "Il n'y avait rien à acheter.",
+      "Nous voulions acheter des souvenirs mais il n'y en avait pas.",
+      'Ce serait bien de vendre quelques produits.',
+      'Pas de boutique ni d’artisanat à vendre.',
+    ],
+  },
+  {
+    id: 18,
+    group: 'comfort',
+    fr: "Ils se sont sentis à l'aise et en sécurité.",
+    en: 'They felt comfortable and safe.',
+    examples: [
+      'We felt safe the whole time.',
+      'Very comfortable and relaxing.',
+      'The place felt secure.',
+      'We were at ease throughout the visit.',
+      'Nous nous sommes sentis en sécurité tout le temps.',
+      'Très confortable et reposant.',
+      "L'endroit semblait sûr.",
+      "Nous étions à l'aise pendant toute la visite.",
+    ],
+  },
+  {
+    id: 19,
+    group: 'comfort',
+    fr: 'Ils ont eu un problème de confort ou de sécurité.',
+    en: 'They had a problem with comfort or safety.',
+    examples: [
+      'We did not feel safe.',
+      'It was too hot and there was no shade.',
+      'There were no toilets.',
+      'The path was dangerous.',
+      'Nous ne nous sentions pas en sécurité.',
+      "Il faisait trop chaud et il n'y avait pas d'ombre.",
+      "Il n'y avait pas de toilettes.",
+      'Le chemin était dangereux.',
+    ],
+  },
+  {
+    id: 20,
+    group: 'organisation',
+    fr: "Ils ont aimé l'organisation de la visite.",
+    en: 'They liked how the visit was organized.',
+    examples: [
+      'The visit was well organized.',
+      'Everything was well planned.',
+      'Good organization from start to finish.',
+      'The tour ran smoothly.',
+      'La visite était bien organisée.',
+      'Tout était bien planifié.',
+      "Une bonne organisation du début à la fin.",
+      "La visite s'est déroulée sans accroc.",
+    ],
+  },
+  {
+    id: 21,
+    group: 'organisation',
+    fr: 'Ils ont eu un problème avec les horaires ou la durée.',
+    en: 'They had a problem with the timing or duration.',
+    examples: [
+      'The visit was too long.',
+      'It was too short.',
+      'We had to wait a long time.',
+      'The host was late.',
+      'La visite était trop longue.',
+      "C'était trop court.",
+      'Nous avons dû attendre longtemps.',
+      "L'hôte était en retard.",
+    ],
+  },
+  {
+    id: 22,
+    group: 'price',
+    fr: 'Ils ont trouvé le prix juste.',
+    en: 'They thought the price was fair.',
+    examples: [
+      'Good value for money.',
+      'The price was fair.',
+      'Very reasonable price.',
+      'Worth every penny.',
+      'Bon rapport qualité-prix.',
+      'Le prix était juste.',
+      'Prix très raisonnable.',
+      'Ça valait vraiment le prix.',
+    ],
+  },
+  {
+    id: 23,
+    group: 'price',
+    fr: 'Ils ont trouvé le prix trop élevé.',
+    en: 'They thought the price was too high.',
+    examples: [
+      'It was too expensive.',
+      'The price was too high.',
+      'Overpriced for what it is.',
+      'Not worth the money.',
+      "C'était trop cher.",
+      'Le prix était trop élevé.',
+      "Trop cher pour ce que c'est.",
+      'Ça ne vaut pas le prix.',
+    ],
+  },
+  {
+    id: 24,
+    group: 'access',
+    fr: "Ils ont trouvé l'endroit facilement.",
+    en: 'They found the place easily.',
+    examples: [
+      'The place was easy to find.',
+      'Directions were clear.',
+      'We found it without any problem.',
+      'Easy to get there.',
+      "L'endroit était facile à trouver.",
+      'Les indications étaient claires.',
+      'Nous avons trouvé sans problème.',
+      "Facile d'y accéder.",
+    ],
+  },
+  {
+    id: 25,
+    group: 'access',
+    fr: "Ils ont eu du mal à trouver l'endroit.",
+    en: 'They had difficulty finding the place.',
+    examples: [
+      'The farm was hard to find.',
+      'We got lost on the way.',
+      'There were no signs to the place.',
+      'The directions were confusing.',
+      'La ferme était difficile à trouver.',
+      'Nous nous sommes perdus en route.',
+      "Il n'y avait aucun panneau pour y aller.",
+      'Les indications étaient confuses.',
+    ],
+  },
+  {
+    id: 26,
+    group: 'loyalty',
+    fr: "Ils ont dit qu'ils reviendront ou en parleront autour d'eux.",
+    en: 'They said they would return or recommend it to others.',
+    examples: [
+      'We will definitely come back.',
+      'I highly recommend this place.',
+      'We will tell our friends about it.',
+      'A must-do, I recommend it to everyone.',
+      'Nous reviendrons sans hésiter.',
+      'Je recommande vivement cet endroit.',
+      'Nous en parlerons à nos amis.',
+      'À faire absolument, je le recommande à tout le monde.',
+    ],
+  },
+  {
+    id: 27,
+    group: 'fallback',
+    fr: "Pas sûr. Le commentaire est gardé pour que quelqu'un le lise.",
+    en: 'Not sure. The review is kept for someone to read.',
+    examples: [],
+  },
+];
+
+export const MEANINGS_BY_ID = new Map(MEANINGS.map((m) => [m.id, m]));
+
+export function getMeaning(id: MeaningId): Meaning {
+  const m = MEANINGS_BY_ID.get(id);
+  if (!m) throw new Error(`Unknown meaning ${id}`);
+  return m;
+}
