@@ -359,6 +359,12 @@ button.small {
   color: var(--ink);
 }
 
+/* The tab bar scrolls sideways, which clips an outline drawn outside the button. */
+.tabs button:focus-visible {
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+
 .tabs button.active {
   color: var(--ink);
 }
@@ -1759,6 +1765,20 @@ input[lang] {
     line-height: 1.15;
     text-align: center;
     white-space: normal;
+  }
+
+  .tab-label {
+    max-width: 100%;
+  }
+
+  .tab-lang {
+    display: block;
+    overflow: hidden;
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .tabs button.active::after {

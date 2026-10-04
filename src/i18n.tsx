@@ -8,7 +8,7 @@ const STRINGS = {
   tabNew: { en: 'New review', fr: 'Nouvel avis' },
   tabReviews: { en: 'Reviews', fr: 'Avis' },
   tabInsights: { en: 'Insights', fr: 'Tendances' },
-  tabMessages: { en: 'Messages', fr: 'Messages' },
+  tabPhrasebook: { en: 'Phrasebook', fr: 'Phrases' },
   tabOffline: { en: 'Offline', fr: 'Hors ligne' },
 
   inputPlaceholder: {

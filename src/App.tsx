@@ -9,7 +9,7 @@ import { VolunteerSignIn } from './components/VolunteerSignIn';
 import { useI18n, type StringKey } from './i18n';
 import { listReviews, needsVolunteer, type Review } from './lib/db';
 import { LOCAL_LANGUAGES } from './lib/languages';
-import { useVoices } from './lib/voice-library';
+import { useLanguageName, useVoices } from './lib/voice-library';
 import { signOut, useVolunteer } from './lib/volunteer';
 
 type Tab = 'new' | 'reviews' | 'insights' | 'messages' | 'improve' | 'offline';
@@ -18,7 +18,7 @@ const TABS: { id: Tab; label: StringKey }[] = [
   { id: 'new', label: 'tabNew' },
   { id: 'reviews', label: 'tabReviews' },
   { id: 'insights', label: 'tabInsights' },
-  { id: 'messages', label: 'tabMessages' },
+  { id: 'messages', label: 'tabPhrasebook' },
   { id: 'improve', label: 'tabImprove' },
   { id: 'offline', label: 'tabOffline' },
 ];
@@ -36,6 +36,7 @@ export function App() {
 
   const { credential, can } = useVolunteer();
   const { recordings } = useVoices();
+  const shortLanguageName = useLanguageName().replace(/\s*\(.*\)$/, '');
   const [signingIn, setSigningIn] = useState(() => location.hash.startsWith('#volunteer='));
   const toRead = reviews.filter(needsVolunteer).length;
   const toImprove =
@@ -76,7 +77,10 @@ export function App() {
       <nav className="tabs" style={{ '--tab-count': tabs.length } as CSSProperties}>
         {tabs.map((tb) => (
           <button key={tb.id} className={activeTab === tb.id ? 'active' : ''} onClick={() => setTab(tb.id)}>
-            {t(tb.label)}
+            <span className="tab-label">
+              {t(tb.label)}
+              {tb.id === 'messages' && <span className="tab-lang"> ({shortLanguageName})</span>}
+            </span>
             {tb.id === 'reviews' && toRead > 0 && <span className="badge">{toRead}</span>}
             {tb.id === 'improve' && toImprove > 0 && <span className="badge">{toImprove}</span>}
           </button>
