@@ -10,4 +10,5 @@ tsconfig.tsbuildinfo
 .env*
 /*.m4a
 /*.pdf
+!/SabiEcho_Product_Description.pdf
 demo-assets/
