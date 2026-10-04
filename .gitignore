@@ -10,3 +10,4 @@ tsconfig.tsbuildinfo
 .env*
 /*.m4a
 /*.pdf
+demo-assets/

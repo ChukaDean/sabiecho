@@ -94,7 +94,7 @@ export function App() {
 
       <LanguagePicker />
 
-      <nav className="tabs" style={{ '--tab-count': tabs.length } as CSSProperties}>
+      <nav className="tabs" data-count={tabs.length} style={{ '--tab-count': tabs.length } as CSSProperties}>
         {tabs.map((tb) => (
           <button key={tb.id} className={activeTab === tb.id ? 'active' : ''} onClick={() => setTab(tb.id)}>
             <span className="tab-icon" aria-hidden="true">
