@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { ImprovePanel } from './components/ImprovePanel';
 import { Insights } from './components/Insights';
 import { MessagesList } from './components/MessagesList';
@@ -23,6 +23,25 @@ const TABS: { id: Tab; label: StringKey }[] = [
   { id: 'offline', label: 'tabOffline' },
 ];
 
+const TAB_ICONS: Record<Tab, ReactNode> = {
+  new: (
+    <>
+      <path d="M20 11.5a7.5 7.5 0 0 1-10.9 6.7L4.5 19.5l1.2-4.2A7.5 7.5 0 1 1 20 11.5z" />
+      <path d="M12.5 8.5v6M9.5 11.5h6" />
+    </>
+  ),
+  reviews: <path d="M5 6.5h14M5 12h14M5 17.5h9" />,
+  insights: <path d="M6 19.5v-7M12 19.5v-15M18 19.5v-10" />,
+  messages: (
+    <>
+      <path d="M5 5.5A2 2 0 0 1 7 3.5h12v14H7a2 2 0 0 0-2 2z" />
+      <path d="M5 19.5a2 2 0 0 0 2 2h12v-4" />
+    </>
+  ),
+  improve: <path d="M4.5 19.5h4l10-10-4-4-10 10zM13 7l4 4" />,
+  offline: <path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14" />,
+};
+
 export function App() {
   const { lang, setLang, t } = useI18n();
   const [tab, setTab] = useState<Tab>('new');
@@ -36,7 +55,8 @@ export function App() {
 
   const { credential, can } = useVolunteer();
   const { recordings } = useVoices();
-  const shortLanguageName = useLanguageName().replace(/\s*\(.*\)$/, '');
+  const plainLanguageName = useLanguageName().replace(/\s*\(.*\)$/, '');
+  const shortLanguageName = plainLanguageName.charAt(0).toUpperCase() + plainLanguageName.slice(1);
   const [signingIn, setSigningIn] = useState(() => location.hash.startsWith('#volunteer='));
   const toRead = reviews.filter(needsVolunteer).length;
   const toImprove =
@@ -77,6 +97,10 @@ export function App() {
       <nav className="tabs" style={{ '--tab-count': tabs.length } as CSSProperties}>
         {tabs.map((tb) => (
           <button key={tb.id} className={activeTab === tb.id ? 'active' : ''} onClick={() => setTab(tb.id)}>
+            <span className="tab-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">{TAB_ICONS[tb.id]}</svg>
+              {tb.id === 'messages' && <span className="tab-tag">{shortLanguageName}</span>}
+            </span>
             <span className="tab-label">
               {t(tb.label)}
               {tb.id === 'messages' && <span className="tab-lang"> ({shortLanguageName})</span>}
