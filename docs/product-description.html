@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SabiEcho — Product description</title>
+<link rel="stylesheet" href="../node_modules/@fontsource-variable/fraunces/index.css">
+<link rel="stylesheet" href="../node_modules/@fontsource-variable/dm-sans/index.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500&amp;display=block&amp;text=%20TXYabehijklmnostuvwy%C3%89%C3%A9%C3%AD%C3%BA%C7%90%C7%94%C9%94%C9%96%C9%9B%CC%81">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 210mm; height: 297mm; }
+  body { position: relative; }
+  body { font-family: 'DM Sans Variable', sans-serif; color: #0d1321; background: #f7f1e5; font-size: 8.9pt; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; overflow: hidden; }
+  .serif { font-family: 'Fraunces Variable', serif; }
+  .amber { color: #f4a73b; }
+
+  header { position: relative; overflow: hidden; background: #0d1321; color: #f7f1e5; padding: 9mm 14mm 7.5mm; }
+  header svg.rings { position: absolute; right: -30mm; top: -14mm; width: 88mm; height: 88mm; }
+  .brand { display: flex; align-items: center; gap: 3mm; font-family: 'Fraunces Variable', serif; font-size: 15pt; font-weight: 600; }
+  .brand i { width: 3.2mm; height: 3.2mm; border-radius: 50%; background: #f4a73b; box-shadow: 0 0 0 1.4mm rgba(244,167,59,.25), 0 0 0 2.8mm rgba(244,167,59,.1); margin: 0 1.6mm 0 1.2mm; }
+  .brand .doc { font-family: 'DM Sans Variable', sans-serif; font-size: 8pt; font-weight: 400; color: rgba(247,241,229,.6); margin-left: 3mm; padding-left: 3mm; border-left: 0.3mm solid rgba(247,241,229,.25); }
+  .meta { position: absolute; right: 14mm; top: 12mm; text-align: right; font-size: 8pt; color: rgba(247,241,229,.65); line-height: 1.5; }
+  h1 { font-family: 'Fraunces Variable', serif; font-weight: 500; font-size: 22pt; line-height: 1.08; margin-top: 4.5mm; max-width: 140mm; letter-spacing: -.01em; }
+  .lead { margin-top: 3mm; font-size: 10pt; line-height: 1.45; color: rgba(247,241,229,.85); max-width: 150mm; }
+  .lead b { color: #f7f1e5; font-weight: 600; }
+
+  main { padding: 6mm 14mm 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 9mm; }
+  h2 { font-family: 'Fraunces Variable', serif; font-weight: 600; font-size: 11.5pt; margin: 0 0 1.6mm; display: flex; align-items: center; gap: 2.2mm; }
+  h2::before { content: ''; width: 2mm; height: 2mm; border-radius: 50%; background: #f4a73b; flex: none; }
+  section { margin-bottom: 4.6mm; }
+  p + p { margin-top: 1.6mm; }
+  .muted { color: #5c5b58; }
+
+  .steps { list-style: none; display: grid; gap: 1.7mm; }
+  .steps li { display: grid; grid-template-columns: 7mm 1fr; gap: 2.5mm; align-items: start; }
+  .steps .n { width: 6.4mm; height: 6.4mm; border-radius: 50%; background: #f4a73b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 8.5pt; }
+  .steps b { display: block; }
+
+  .example { background: #fffcf6; border: 0.3mm solid #e7dfcf; border-radius: 3mm; padding: 3mm 3.6mm 2mm; }
+  .example q { display: block; font-family: 'Fraunces Variable', serif; font-style: italic; font-size: 9.2pt; line-height: 1.38; margin-bottom: 1.8mm; quotes: '“' '”'; }
+  .row { display: grid; grid-template-columns: 7.5mm 1fr; gap: 2.5mm; align-items: center; padding: 1mm 0; border-top: 0.25mm solid #efe8da; }
+  .row .num { width: 7mm; height: 7mm; border-radius: 50%; background: #0d1321; color: #f4a73b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 8pt; }
+  .row .fon { font-family: 'Noto Serif', serif; font-weight: 500; font-size: 9.6pt; line-height: 1.2; }
+  .row .en { font-size: 7.8pt; color: #5c5b58; }
+
+  ul.features { list-style: none; display: grid; gap: 1.5mm; }
+  ul.features li { padding-left: 4.2mm; position: relative; }
+  ul.features li::before { content: ''; position: absolute; left: 0; top: 1.9mm; width: 1.6mm; height: 1.6mm; border-radius: 50%; border: 0.4mm solid #f4a73b; }
+  ul.features b { font-weight: 600; }
+
+  .stats { grid-column: 1 / -1; margin-top: 1mm; display: grid; grid-template-columns: repeat(5, 1fr); background: #0d1321; color: #f7f1e5; border-radius: 3.5mm; padding: 3.6mm 5mm; margin-bottom: 4.6mm; }
+  .stat + .stat { border-left: 0.3mm solid rgba(247,241,229,.15); padding-left: 4mm; }
+  .stat .big { font-family: 'Fraunces Variable', serif; font-size: 16pt; line-height: 1; color: #f4a73b; font-weight: 500; }
+  .stat .lbl { font-size: 7.6pt; line-height: 1.35; margin-top: 1.4mm; color: rgba(247,241,229,.78); }
+
+  footer { position: absolute; left: 0; right: 0; bottom: 0; padding: 4.5mm 14mm; border-top: 0.3mm solid #e7dfcf; display: flex; justify-content: space-between; font-size: 7.8pt; color: #5c5b58; }
+  footer b { color: #0d1321; }
+</style>
+</head>
+<body>
+<header>
+  <svg class="rings" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="96" fill="none" stroke="#f4a73b" stroke-width="1" opacity=".18"/>
+    <circle cx="100" cy="100" r="74" fill="none" stroke="#f4a73b" stroke-width="1" opacity=".28"/>
+    <circle cx="100" cy="100" r="52" fill="none" stroke="#f4a73b" stroke-width="1" opacity=".42"/>
+    <circle cx="100" cy="100" r="32" fill="none" stroke="#f4a73b" stroke-width="1" opacity=".6"/>
+    <circle cx="100" cy="100" r="13" fill="#f4a73b"/>
+  </svg>
+  <div class="brand"><i></i>SabiEcho<span class="doc">Product description · October 2026</span></div>
+  <h1>Visitor feedback, heard in the host’s own language.</h1>
+  <p class="lead">SabiEcho is an offline app for community tourism hosts. A visitor’s review in <b>English or French</b>, typed, spoken or shared from WhatsApp, is turned into <b>27 numbered meanings</b> and played back in the host’s language as <b>phrases recorded by real people</b>. The pilot language is <b>Fon (Benin)</b>.</p>
+</header>
+
+<main>
+  <div>
+    <section>
+      <h2>The problem</h2>
+      <p>Many community tourism hosts do not read English or French well, so feedback that could improve their visits goes unheard. Machine translation into languages like Fon is rare and unreliable, and rural connections are patchy.</p>
+    </section>
+
+    <section>
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><span class="n">1</span><div><b>Capture</b><span class="muted">Type a review, record the visitor, upload a voice note or share it from WhatsApp.</span></div></li>
+        <li><span class="n">2</span><div><b>Understand</b><span class="muted">Speech is transcribed on the phone, then each part of the review is matched to one of 27 meanings, such as “the price was too high”.</span></div></li>
+        <li><span class="n">3</span><div><b>Hear</b><span class="muted">Each meaning plays as a recording in the host’s language. If unsure, the app says so and keeps the review for a person.</span></div></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Example</h2>
+      <div class="example">
+        <q>We had a great time. The host explained everything clearly, the food was excellent, but the farm was hard to find.</q>
+        <div class="row"><span class="num">01</span><div><div class="fon">Xomɛ hun jonɔ ɔ</div><div class="en">The visitor was happy</div></div></div>
+        <div class="row"><span class="num">04</span><div><div class="fon">Tinmɛ towe lɛ nyɔ́ nukún yetɔn mɛ</div><div class="en">They liked your explanations</div></div></div>
+        <div class="row"><span class="num">14</span><div><div class="fon">Ye ɖu nǔ e ye ɖu bo nu lɛ é sín vivǐ</div><div class="en">They liked what they ate and drank</div></div></div>
+        <div class="row"><span class="num">25</span><div><div class="fon">É vɛwǔ nú ye bɔ ye na mɔ tɛn ɔ</div><div class="en">They had difficulty finding the place</div></div></div>
+      </div>
+    </section>
+  </div>
+
+  <div>
+    <section>
+      <h2>What hosts get</h2>
+      <ul class="features">
+        <li><b>Instant meaning, in their language.</b> Every review is saved with what it means and the exact words it came from.</li>
+        <li><b>Insights.</b> How visitors felt over 7 days, 30 days or all time, whether it is improving, what they love and what to fix first, with practical advice, all playable in Fon.</li>
+        <li><b>Phrasebook.</b> All 27 meanings with their recordings, to learn and replay.</li>
+        <li><b>Works offline.</b> After one visit online, the app, the AI and the chosen language’s recordings work without signal.</li>
+        <li><b>Private by design.</b> Reviews stay on the phone. There is no account and no server.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Improved by local language reviewers</h2>
+      <p>Trusted reviewers sign in with a personal code. They correct reviews the app got wrong, teach it new phrases, and record and check voice clips. The phone retrains its classifier in seconds, offline, and corrections can be shared between devices as a file.</p>
+    </section>
+
+    <section>
+      <h2>How it is built</h2>
+      <p>An installable web app (PWA) running entirely in the browser. Whisper transcribes speech; a multilingual sentence model turns each part of a review into numbers; a small classifier trained on 604 English and French examples maps them to the 27 meanings. Because the output is a number, <b>adding a language means recording 26 phrases, not retraining</b>.</p>
+    </section>
+
+    <section>
+      <h2>Status and next steps</h2>
+      <p>Live and pilot-ready, with 26 of 27 Fon phrases recorded. Next: a pilot with hosts in Benin, native-speaker review of three newer Fon phrases, and language reviewers for the next languages.</p>
+    </section>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="big">27</div><div class="lbl">numbered meanings cover overall feeling and 11 topics</div></div>
+    <div class="stat"><div class="big">0.79</div><div class="lbl">accuracy (F1) on unseen reviews, vs 0.34 for a small LLM</div></div>
+    <div class="stat"><div class="big">0 MB</div><div class="lbl">of data needed after the first visit</div></div>
+    <div class="stat"><div class="big">~7 s</div><div class="lbl">to retrain on the phone after a correction</div></div>
+    <div class="stat"><div class="big">15</div><div class="lbl">African languages ready to receive recordings</div></div>
+  </div>
+
+</main>
+
+<footer>
+  <span><b>SabiEcho</b> · Global visitors. Local understanding.</span>
+  <span><b>sabiecho.vercel.app</b> · github.com/ChukaDean/sabiecho</span>
+</footer>
+</body>
+</html>
