@@ -4,6 +4,7 @@ import { useI18n } from '../i18n';
 import { DEFAULT_LANGUAGE, getLanguage, languageName, type LocalLanguage } from './languages';
 import builtInRecordings from './recordings.json';
 import { MEANINGS, type MeaningId } from './taxonomy';
+import { voicePack } from './voice-pack';
 
 export interface VoiceClip {
   text: string | null;
@@ -56,6 +57,16 @@ export function VoiceLibraryProvider({ children }: { children: ReactNode }) {
   useEffect(() => () => localClips.forEach((c) => URL.revokeObjectURL(c.url)), [localClips]);
 
   const language = getLanguage(languageCode);
+
+  useEffect(() => {
+    const save = () =>
+      void voicePack.check(language.code).then((s) => {
+        if (s.status !== 'ready' && s.total > 0 && navigator.onLine) void voicePack.download(language.code);
+      });
+    save();
+    window.addEventListener('online', save);
+    return () => window.removeEventListener('online', save);
+  }, [language.code]);
 
   const clip = useCallback(
     (id: MeaningId, code = language.code): VoiceClip | null => {

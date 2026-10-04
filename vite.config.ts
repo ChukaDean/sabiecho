@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg', 'audio/**/*', 'training/*'],
+      includeAssets: ['icon.svg', 'training/*'],
       manifest: {
         name: 'SabiEcho',
         short_name: 'SabiEcho',
@@ -25,10 +25,23 @@ export default defineConfig({
       },
       workbox: {
         // training/* is the built-in example set used to retrain the classifier offline.
-        globPatterns: ['**/*.{js,css,html,svg,png,woff2,m4a,mp3,wav,ogg,webm}', 'training/*'],
+        globPatterns: ['**/*.{js,css,html,svg,png,woff2}', 'training/*'],
         // The ONNX runtime (public/ort) is cached by Transformers.js itself on first use.
         globIgnores: ['ort/**'],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+        // Recordings are saved per language by src/lib/voice-pack.ts into this cache, not precached for every
+        // language. Range support lets iOS Safari, which requests audio in byte ranges, play them offline.
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.includes('/audio/'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'sabiecho-voices',
+              rangeRequests: true,
+              cacheableResponse: { statuses: [200] },
+            },
+          },
+        ],
       },
     }),
   ],
