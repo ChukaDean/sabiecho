@@ -637,6 +637,16 @@ textarea:disabled {
   line-height: 1.45;
 }
 
+.shared-note {
+  margin: 1.25rem 0 0.75rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  background: var(--amber-tint);
+  color: var(--amber-ink);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
 .error {
   color: var(--danger);
   font-size: 0.9rem;

@@ -18,6 +18,22 @@ const STRINGS = {
   record: { en: 'Record voice', fr: 'Enregistrer la voix' },
   stop: { en: 'Stop recording', fr: "Arrêter l'enregistrement" },
   upload: { en: 'Upload voice note', fr: 'Importer une note vocale' },
+  sharedReceived: {
+    en: 'Received from WhatsApp. Check it, then tap Analyze review.',
+    fr: "Reçu de WhatsApp. Vérifiez, puis touchez Analyser l'avis.",
+  },
+  whatsappHintAndroid: {
+    en: 'From WhatsApp: long-press a message or voice note, tap Share and choose SabiEcho.',
+    fr: 'Depuis WhatsApp : appuyez longuement sur un message ou une note vocale, touchez Partager et choisissez SabiEcho.',
+  },
+  whatsappHintInstall: {
+    en: 'Add SabiEcho to your home screen to share voice notes and messages straight from WhatsApp.',
+    fr: "Ajoutez SabiEcho à l'écran d'accueil pour partager notes vocales et messages directement depuis WhatsApp.",
+  },
+  whatsappHintIos: {
+    en: 'From WhatsApp: long-press the voice note, tap Share › Save to Files, then tap Upload voice note. For a text message, copy and paste it above.',
+    fr: 'Depuis WhatsApp : appuyez longuement sur la note vocale, touchez Partager › Enregistrer dans Fichiers, puis Importer une note vocale. Pour un message, copiez-le et collez-le ci-dessus.',
+  },
   speechLanguage: { en: 'Spoken language', fr: 'Langue parlée' },
   auto: { en: 'Detect automatically', fr: 'Détection automatique' },
   analyze: { en: 'Analyze review', fr: "Analyser l'avis" },

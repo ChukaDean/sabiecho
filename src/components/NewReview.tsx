@@ -7,6 +7,7 @@ import { ml } from '../lib/ml';
 import { ASR_MODEL, EMBEDDING_MODEL } from '../lib/models';
 import { useLanguageName, useVoices } from '../lib/voice-library';
 import { useVolunteer } from '../lib/volunteer';
+import { takeShared, wasShared } from '../lib/shared-inbox';
 import { useObjectUrl } from '../lib/useObjectUrl';
 import { usePlayer } from '../lib/usePlayer';
 import type { ReviewLanguage, SpeechLanguage } from '../lib/worker-protocol';
@@ -34,6 +35,17 @@ export function NewReview({ onSaved }: { onSaved: () => void }) {
   const [correcting, setCorrecting] = useState(false);
 
   const voiceUrl = useObjectUrl(voice);
+  const [fromShare, setFromShare] = useState(false);
+
+  useEffect(() => {
+    if (!wasShared()) return;
+    void takeShared().then((shared) => {
+      if (!shared) return;
+      if (shared.text) setText(shared.text);
+      if (shared.audio) setVoice(shared.audio);
+      setFromShare(true);
+    });
+  }, []);
 
   async function toggleRecording() {
     setError(null);
@@ -56,6 +68,7 @@ export function NewReview({ onSaved }: { onSaved: () => void }) {
     setVoice(file);
     setResult(null);
     setError(null);
+    setFromShare(false);
   }
 
   async function analyze() {
@@ -118,6 +131,7 @@ export function NewReview({ onSaved }: { onSaved: () => void }) {
     setVoice(null);
     setResult(null);
     setError(null);
+    setFromShare(false);
   }
 
   const needsAsrDownload = voice && !ml.wasDownloaded('asr');
@@ -130,6 +144,7 @@ export function NewReview({ onSaved }: { onSaved: () => void }) {
   return (
     <section className="panel input-panel">
       <ScreenHero eyebrow={t('newEyebrow')} title={t('newTitle')} intro={t('newIntro', { language: languageName })} />
+      {fromShare && !result && <p className="shared-note">{t('sharedReceived')}</p>}
       <label className="field-label" htmlFor="review-text">
         {t('inputLabel')}
       </label>
@@ -168,6 +183,7 @@ export function NewReview({ onSaved }: { onSaved: () => void }) {
           </select>
         </label>
       </div>
+      {!voice && !text && <WhatsAppHint />}
 
       {voice && voiceUrl && (
         <div className="voice-preview">
@@ -251,6 +267,15 @@ export function NewReview({ onSaved }: { onSaved: () => void }) {
       )}
     </section>
   );
+}
+
+function WhatsAppHint() {
+  const { t } = useI18n();
+  const ua = navigator.userAgent;
+  const ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const installed = matchMedia('(display-mode: standalone)').matches;
+  const key = ios ? 'whatsappHintIos' : !/Android/.test(ua) ? null : installed ? 'whatsappHintAndroid' : 'whatsappHintInstall';
+  return key ? <p className="hint">{t(key)}</p> : null;
 }
 
 function BusyIndicator({ busy }: { busy: Exclude<Busy, null> }) {
